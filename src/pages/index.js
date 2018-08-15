@@ -7,26 +7,24 @@ export default class IndexPage extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
-    return (
-      <section className="section">
+    return <section className="section">
         <div className="container">
           <div className="content">
-            <h1 className="has-text-weight-bold is-size-2">Latest Stories</h1>
+            <h1 className="has-text-weight-bold is-size-2">What's New</h1>
           </div>
-          {posts
-            .map(({ node: post }) => (
-              <div
-                className="content"
-                style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
-                key={post.id}
-              >
-                <p>
+          {posts.map(({ node: post }) => (
+            <article
+              className="content"
+              style={{ border: "1px solid #eaecee", padding: "2em 4em" }}
+              key={post.id}
+            >
+                <h2>
                   <Link className="has-text-primary" to={post.fields.slug}>
                     {post.frontmatter.title}
                   </Link>
                   <span> &bull; </span>
                   <small>{post.frontmatter.date}</small>
-                </p>
+                </h2>
                 <p>
                   {post.excerpt}
                   <br />
@@ -35,11 +33,10 @@ export default class IndexPage extends React.Component {
                     Keep Reading →
                   </Link>
                 </p>
-              </div>
-            ))}
+          </article>
+          ))}
         </div>
-      </section>
-    )
+      </section>;
   }
 }
 
